@@ -7,7 +7,16 @@ export default function Home() {
       {/* <img src='./hero.png' className="w-screen h-screen" /> */}
       <NavBar />
       {/* (the content) } */}
-      <HomePage />
+      <div className={`
+            w-[96%] h-[96vh] 
+            bg-white 
+            rounded-2xl 
+            mx-[2%] my-[2vh] 
+            
+        `}>
+        <HomePage />
+      </div>
+
     </main>
   );
 }

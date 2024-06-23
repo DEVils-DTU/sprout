@@ -14,15 +14,9 @@ const HomePage = () => {
     // };
 
     return (
-        <div className={`
-            w-[96%] h-[96vh] 
-            bg-white 
-            rounded-2xl 
-            mx-[2%] my-[2vh] 
-            flex flex-col
+        <div className='h-full w-full rounded-2xl flex flex-col
             items-center justify-start
-            p-[2%]
-        `}>
+            p-[2%]'>
             <div className={`
                     w-[100%] h-[20%]
                     bg-white
