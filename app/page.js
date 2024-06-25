@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   // const [searchQuery, setSearchQuery] = ['', ''];
@@ -14,10 +15,13 @@ export default function Home() {
   const loggedIn = true;
 
   return (
-    <div className='h-full w-full rounded-2xl flex flex-col
-          items-center justify-start
-          p-[2%]'>
-      <div className={`
+    <div className='
+    h-full w-full rounded-2xl flex flex-col
+    items-center justify-start
+    p-[2%]'>
+
+      {/* SEARCHBAR WITH LOGIN */}
+      {/* <div className={`
                   w-[100%] h-[20%]
                   bg-white
                   flex items-center justify-between     
@@ -29,7 +33,13 @@ export default function Home() {
         </div>
         <FontAwesomeIcon icon={faUser} className={`text-black h-[40%] w-[10%] ml-2 ${!loggedIn ? 'hidden' : ''}`} />
         <Link href='/' className={`text-white font-bold rounded-2xl p-3 bg-[#285A43] ${loggedIn ? 'hidden' : ''}`}>Login/Signup</Link>
-      </div>
-    </div>
+      </div> */}
+
+      {/* BANNER */}
+      <img src='/banner.png' alt='banner' className='pb-10' />
+
+      {/* ABOUT */}
+      <img src='/homeAbout.png' alt='logo' className='h-1/2' />
+    </div >
   );
 }

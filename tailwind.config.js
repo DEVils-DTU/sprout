@@ -15,6 +15,7 @@ module.exports = {
       fontFamily: {
         "convergence": ["Convergence", "sans-serif"],
         "poppins": ["Poppins", "sans-serif"],
+        "lato": ["Lato", "sans-serif"],
       },
     },
   },

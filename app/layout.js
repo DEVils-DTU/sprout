@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
             bg-white 
             rounded-2xl 
             mx-[2%] my-[2vh] 
-            
+            overflow-auto
         `}>
           {children}
         </div>
