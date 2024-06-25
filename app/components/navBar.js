@@ -3,10 +3,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { useEffect } from 'react'
+import { useState } from 'react';
 
-var currPage = 'About';
+
+// var currPage = 'About';
 
 const NavBar = () => {
+
+    const [currPage, setPage] = useState('Home');
 
     useEffect(() => {
         const link = document.createElement('link');
@@ -24,9 +28,7 @@ const NavBar = () => {
 
     return (
         <nav className='w-1/3 lg:w-1/4 bg-transparent flex flex-col text-black items-center rounded-3xl'>
-            <div className='
-                w-[90%] md:w-[80%] lg:w-[70%]
-                flex justify-center items-center gap-2 
+            <Link href="/" className='w-[90%] md:w-[80%] lg:w-[70%]  flex justify-center items-center gap-2 
                 m-10 mb-3 p-3 
                 bg-white 
                 rounded-2xl'>
@@ -36,10 +38,9 @@ const NavBar = () => {
                     text-[50%] sm:text-[70%] md:text-[90%] lg:text-[100%]
                     font-bold font-convergence 
                     text-black'>S P R O U T™</h1>
-            </div>
+            </Link>
             <ul className='w-full flex flex-col justify-center items-center '>
-                <li className={`
-                    w-[90%] md:w-[80%] lg:w-[70%] 
+                <Link href="/" className='w-[90%] md:w-[80%] lg:w-[70%]'><li className={`
                     flex 
                     items-center 
                     gap-5 
@@ -54,10 +55,13 @@ const NavBar = () => {
                     duration-500 
                     rounded-2xl 
                     text-[70%] md:text-[90%] lg:text-[100%]
-                    font-poppins`}>Home</li>
-
-                <li className={`
-                    w-[90%] md:w-[80%] lg:w-[70%]
+                    font-poppins`}
+                    onClick={() => { setPage("Home") }}>
+                    Home
+                </li></Link>
+                <Link href="/Listings" className='w-[90%] md:w-[80%] lg:w-[70%]'>
+                    <li className={`
+                    
                     text-[70%] md:text-[90%] lg:text-[100%]
                     flex 
                     items-center 
@@ -65,16 +69,18 @@ const NavBar = () => {
                     p-3 
                     px-5 
                     mb-3 
-                    ${(currPage == 'About') ? 'bg-white text-[#285A43]' : 'bg-transparent text-white'} 
+                    ${(currPage == 'Listings') ? 'bg-white text-[#285A43]' : 'bg-transparent text-white'} 
                     hover:bg-white 
                     hover:text-[#285A43] 
                     transition-colors
                     duration-500
                     rounded-2xl 
-                    font-poppins`}>About sprout™</li>
+                    font-poppins`}
+                        onClick={() => { setPage("About") }}>
+                        Projects
+                    </li></Link>
 
-                <li className={`
-                    w-[90%] md:w-[80%] lg:w-[70%]
+                <Link href="/Team" className='w-[90%] md:w-[80%] lg:w-[70%]'><li className={`
                     text-[70%] md:text-[90%] lg:text-[100%]
                     flex 
                     items-center 
@@ -87,7 +93,12 @@ const NavBar = () => {
                     transition-colors
                     duration-500
                     rounded-2xl 
-                    font-poppins`}>Team DEVils</li>
+                    font-poppins`
+                }
+                    onClick={() => { setPage("Team") }}
+                >
+                    Team DEVils
+                </li></Link>
                 {/* <li className='w-[60%] flex items-center gap-5 p-3 px-5 bg-white rounded-2xl font-poppins'>Team DEVils</li> */}
             </ul>
         </nav>
