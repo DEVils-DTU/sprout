@@ -1,16 +1,34 @@
-import React from 'react'
-import ListingCard from '../components/listingCard'
-
+"use client";
+import React, { useState, useEffect } from "react";
+import ListingCard from "../components/listingCard";
 
 const About = () => {
-    return (
-        <div className=' h-full w-full overflow-auto p-10 flex flex-wrap justify-around items-center'>
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(true);
 
-            {/* make this again and again using loop */}
-            <ListingCard /><ListingCard /><ListingCard /><ListingCard /><ListingCard /><ListingCard /><ListingCard />
+  useEffect(() => {
+    fetch("/api/postings")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      });
+  }, []);
 
-        </div>
-    )
-}
+  if (isLoading) return <p>Loading...</p>;
+  return (
+    <div className=" h-full w-full overflow-auto p-10 flex flex-wrap justify-around items-center">
+      {data.map((posting) => (
+        <ListingCard
+          title={posting.title}
+          previewText={posting.preview}
+          proposedPrice={posting.proposedPrice}
+          coverImageURL={posting.coverImageURL}
+          postingID={posting.postingID}
+        />
+      ))}
+    </div>
+  );
+};
 
-export default About
+export default About;
