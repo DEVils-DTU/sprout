@@ -26,6 +26,7 @@ const About = () => {
           .filter((posting) => posting.status == "open")
           .map((posting) => (
             <ListingCard
+              key={posting.postingID}
               title={posting.title}
               previewText={posting.preview}
               proposedPrice={posting.proposedPrice}
@@ -42,6 +43,7 @@ const About = () => {
           .filter((posting) => posting.status == "closed")
           .map((posting) => (
             <ListingCard
+              key={posting.postingID}
               title={posting.title}
               previewText={posting.preview}
               proposedPrice={posting.proposedPrice}

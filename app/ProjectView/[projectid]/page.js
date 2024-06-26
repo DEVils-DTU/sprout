@@ -184,7 +184,7 @@ const ProjectView = ({ params }) => {
             )
           ) : (
             offers.map((offer, i) => (
-              <div className="flex flex-col gap-2 w-full h-full items-start justify-start">
+              <div key={i} className="flex flex-col gap-2 w-full h-full items-start justify-start">
                 <h2 className="font-bold text-2xl">Offer #{i + 1}</h2>
                 {/* <p className="w-full">offerID: {offer.offerID}</p> */}
                 <p className="w-full">Investor Name: {offer.offererDisplay}</p>
