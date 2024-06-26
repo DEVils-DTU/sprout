@@ -48,7 +48,7 @@ const ProjectView = ({ params }) => {
       </div>
 
       {loggedIn ? (
-        usernames != postingData.author ? (
+        username != postingData.author ? (
           // true ? (
           <div className="flex flex-col gap-2 w-full h-full items-start justify-start">
             <h2 className="font-bold text-2xl">Place a Quotation</h2>
