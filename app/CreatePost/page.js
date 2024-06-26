@@ -61,7 +61,7 @@ const CreatePost = () => {
       "Create a new post",
       (response) => {
         console.log(response);
-        window.location.href = "/Listings";
+        window.location.href = "/";
       }
     );
   };

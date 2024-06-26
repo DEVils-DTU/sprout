@@ -142,8 +142,8 @@ const ProjectView = ({ params }) => {
           username != postingData.author ? (
             // false ? (
             offers.find((a) => a.offerer == username) ? (
-              <div className="flex flex-col gap-2 w-full h-full items-start justify-start">
-                Existing Offer by {username} :{" "}
+              <div className="text-2xl h-full w-full p-4 font-bold mb-4 text-black">
+                Hi <a href="/LoginPage" className="text-blue-600 hover:underline">{username}</a>! You have already placed an offer:{" "}
                 {offers.find((a) => a.offerer == username).amount}
               </div>
             ) : (
@@ -151,51 +151,49 @@ const ProjectView = ({ params }) => {
                 <h2 className=" text-xl font-bold  drop-shadow-2xl rounded-xl">
                   Place a Quotation
                 </h2>
-                <div className="flex gap-3 w-full">
-                  <form onSubmit={handleCreateOffer}>
-                    <input
-                      type="text"
-                      className="w-1/6 border-b-2 outline-none p-1"
-                      required
-                      placeholder="10000"
-                      onChange={(e) => setOfferPrice(e.target.value)}
-                    />
-                    <input
-                      type="text"
-                      className="w-1/6 border-b-2 outline-none p-1"
-                      required
-                      placeholder="Name"
-                      onChange={(e) => setOfferName(e.target.value)}
-                    />
-                    <input
-                      type="text"
-                      className="w-1/6 border-b-2 outline-none p-1"
-                      required
-                      placeholder="ContactInfo"
-                      onChange={(e) => setOfferContact(e.target.value)}
-                    />
-                    <button
-                      className="text-[90%] font-lato font-bold p-2 border-2 border-green-900 bg-green-50 w-fit rounded-lg"
-                      type="submit"
-                    >
-                      Submit
-                    </button>
-                  </form>
-                </div>
+                <form onSubmit={handleCreateOffer} className="w-full flex gap-2">
+                  <input
+                    type="text"
+                    className="w-1/6 border-b-2 outline-none p-1"
+                    required
+                    placeholder="10000"
+                    onChange={(e) => setOfferPrice(e.target.value)}
+                  /> <br />
+                  <input
+                    type="text"
+                    className="w-1/6 border-b-2 outline-none p-1"
+                    required
+                    placeholder="Name"
+                    onChange={(e) => setOfferName(e.target.value)}
+                  /> <br />
+                  <input
+                    type="text"
+                    className="w-1/6 border-b-2 outline-none p-1"
+                    required
+                    placeholder="ContactInfo"
+                    onChange={(e) => setOfferContact(e.target.value)}
+                  /> <br />
+                  <button
+                    className="text-[90%] font-lato font-bold p-2 border-2 border-green-900 bg-green-50 w-fit rounded-lg"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </form>
               </div>
             )
           ) : (
-            offers.map((offer) => (
+            offers.map((offer, i) => (
               <div className="flex flex-col gap-2 w-full h-full items-start justify-start">
-                <h2 className="font-bold text-2xl">Offer</h2>
-                <p className="w-full">offerID: {offer.offerID}</p>
-                <p className="w-full">offerer: {offer.offererDisplay}</p>
-                <p className="w-full">Price: {offer.amount}</p>
-                <p className="w-full">Contact: {offer.offererContactInfo}</p>
+                <h2 className="font-bold text-2xl">Offer #{i + 1}</h2>
+                {/* <p className="w-full">offerID: {offer.offerID}</p> */}
+                <p className="w-full">Investor Name: {offer.offererDisplay}</p>
+                <p className="w-full">Offer: {offer.amount}</p>
+                {/* <p className="w-full">Contact: {offer.offererContactInfo}</p> */}
                 {offer.status == "open" ? (
                   <div>
                     <button
-                      className="text-black"
+                      className="text-white font-bold bg-green-600 p-2 rounded-lg mr-2"
                       onClick={() =>
                         handleOfferReply(offer.offerID, "accepted")
                       }
@@ -203,7 +201,7 @@ const ProjectView = ({ params }) => {
                       Accept
                     </button>
                     <button
-                      className="text-black"
+                      className="text-white font-bold bg-red-600 p-2 rounded-lg"
                       onClick={() =>
                         handleOfferReply(offer.offerID, "rejected")
                       }
@@ -212,7 +210,9 @@ const ProjectView = ({ params }) => {
                     </button>
                   </div>
                 ) : (
-                  <p className="w-full">Status: {offer.status}</p>
+                  <p>Status: <span className={`w-full font-bold
+                  ${offer.status == "accepted" ? "text-green-600" : "text-red-600"}
+                    `} >{offer.status.charAt(0).toUpperCase() + offer.status.slice(1)}</span></p>
                 )}
               </div>
             ))
@@ -221,20 +221,24 @@ const ProjectView = ({ params }) => {
           ""
         ) : (
           <Link href="/LoginPage">
-            <button className="w-fit">Login to place a quotation</button>
+            <div className="text-2xl h-full w-full p-4 font-bold mb-4 text-black"> Please <a href="/LoginPage" className="text-blue-600 hover:underline">login</a> to create an offer. </div>
           </Link>
         )}
+
+
+
+
         {loggedIn &&
-        username == postingData.author &&
-        postingData.status == "open" ? (
-          <button className="text-black" onClick={handleDelete}>
-            Close
+          username == postingData.author &&
+          postingData.status == "open" ? (
+          <button className="text-red-600 font-extrabold pb-10" onClick={handleDelete}>
+            Close Project Listing
           </button>
         ) : (
           ""
         )}
       </div>
-    </div>
+    </div >
   );
 };
 
