@@ -5,9 +5,6 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react';
 
-
-// var currPage = 'About';
-
 const NavBar = () => {
 
     const [currPage, setPage] = useState('Home');
@@ -80,14 +77,35 @@ const NavBar = () => {
                         Projects
                     </li></Link>
 
-                <Link href="/Team" className='w-[90%] md:w-[80%] lg:w-[70%]'><li className={`
+                <Link href="/CreatePost" className='w-[90%] md:w-[80%] lg:w-[70%]'>
+                    <li className={`
+                    
                     text-[70%] md:text-[90%] lg:text-[100%]
                     flex 
                     items-center 
                     gap-5 
                     p-3 
                     px-5 
-                    ${(currPage == 'Team') ? 'bg-white text-[#285A43]' : 'bg-transparent text-white'} 
+                    mb-3 
+                    ${(currPage == 'CreatePost') ? 'bg-white text-[#285A43]' : 'bg-transparent text-white'} 
+                    hover:bg-white 
+                    hover:text-[#285A43] 
+                    transition-colors
+                    duration-500
+                    rounded-2xl 
+                    font-poppins`}
+                        onClick={() => { setPage("CreatePost") }}>
+                        List A Project
+                    </li></Link>
+
+                <Link href="/LoginPage" className='w-[90%] md:w-[80%] lg:w-[70%]'><li className={`
+                    text-[70%] md:text-[90%] lg:text-[100%]
+                    flex 
+                    items-center 
+                    gap-5 
+                    p-3 
+                    px-5 
+                    ${(currPage == 'Account') ? 'bg-white text-[#285A43]' : 'bg-transparent text-white'} 
                     hover:bg-white 
                     hover:text-[#285A43] 
                     transition-colors
@@ -95,9 +113,9 @@ const NavBar = () => {
                     rounded-2xl 
                     font-poppins`
                 }
-                    onClick={() => { setPage("Team") }}
+                    onClick={() => { setPage("Account") }}
                 >
-                    Team DEVils
+                    Account
                 </li></Link>
                 {/* <li className='w-[60%] flex items-center gap-5 p-3 px-5 bg-white rounded-2xl font-poppins'>Team DEVils</li> */}
             </ul>
