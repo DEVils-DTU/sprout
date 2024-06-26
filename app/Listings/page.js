@@ -17,9 +17,11 @@ const About = () => {
 
   if (isLoading) return <p>Loading...</p>;
   return (
-    <div className=" h-full w-full overflow-auto p-10 flex flex-wrap justify-around items-center text-black">
-      <div>
-        Open {data.filter((posting) => posting.status == "open").length}
+    <div className="flex flex-col p-10">
+
+      <h1 className="text-black text-2xl font-bold">Open {"("}{data.filter((posting) => posting.status == "open").length}{")"}</h1>
+      <div className=" h-full w-full overflow-auto flex flex-wrap justify-around items-center text-black">
+
         {data
           .filter((posting) => posting.status == "open")
           .map((posting) => (
@@ -33,8 +35,9 @@ const About = () => {
           ))}
       </div>
 
-      <div>
-        Closed {data.filter((posting) => posting.status == "closed").length}
+      <h1 className="text-black text-2xl mt-10 font-bold"> Closed {"("}{data.filter((posting) => posting.status == "closed").length}{")"}</h1>
+      <div className=" h-full w-full overflow-auto flex flex-wrap justify-around items-center text-black">
+
         {data
           .filter((posting) => posting.status == "closed")
           .map((posting) => (
@@ -48,6 +51,7 @@ const About = () => {
           ))}
       </div>
     </div>
+    // </div >
   );
 };
 
