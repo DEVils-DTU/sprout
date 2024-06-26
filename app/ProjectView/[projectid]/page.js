@@ -109,6 +109,7 @@ const ProjectView = ({ params }) => {
           </h2>
         </div>
 
+
         <div className="flex text-justify justify-evenly w-[90%]">
           {postingData.text} <br />{" "}
         </div>

@@ -67,14 +67,16 @@ const CreatePost = () => {
   };
 
   return loggedIn ? (
-    <div className="text-black h-full w-full p-4">
-      <form className="flex flex-col" onSubmit={handlePost}>
+    <div className="text-black h-full w-full p-4 font-poppins">
+      <h1 className="text-3xl font-bold mb-4">Create a new post on sprout™</h1>
+      <form className="flex flex-col gap-1" onSubmit={handlePost}>
         <label>Project Name</label>
         <input
           onChange={(e) => setTitle(e.target.value)}
           type="text"
           placeholder="sprout"
           required
+          className="w-1/6 border-b-2 outline-none p-1"
         />
         <label>Project Author</label>
         <input
@@ -82,6 +84,7 @@ const CreatePost = () => {
           type="text"
           placeholder="Author Name"
           required
+          className="w-1/6 border-b-2 outline-none p-1"
         />
         <label>Short Description</label>
         <input
@@ -89,13 +92,14 @@ const CreatePost = () => {
           placeholder="A project to help the environment"
           onChange={(e) => setPreview(e.target.value)}
           required
+          className="w-1/6 border-b-2 outline-none p-1"
         />
         <label>Long Description</label>
         <input
           type="text"
           placeholder="A project to help the environment"
           onChange={(e) => setText(e.target.value)}
-          className="h-fit text-wrap"
+          className="w-1/6 border-b-2 outline-none p-1"
           required
         />
         <label>Project Image</label>
@@ -103,6 +107,7 @@ const CreatePost = () => {
           onChange={(e) => setCoverImageURL(e.target.value)}
           type="url"
           required
+          className="w-1/6 border-b-2 outline-none p-1"
           placeholder="enter url"
         />
         <label>Minimum Expected Quote</label>
@@ -111,6 +116,7 @@ const CreatePost = () => {
           type="text"
           required
           placeholder="10000"
+          className="w-1/6 border-b-2 outline-none p-1"
         />
         <label>Poster contact Info</label>
         <input
@@ -118,15 +124,16 @@ const CreatePost = () => {
           type="text"
           required
           placeholder="+91XXXXXXXXXX"
+          className="w-1/6 border-b-2 outline-none p-1"
         />
 
-        <button type="submit" className="bg-black text-white">
+        <button type="submit" className="text-[90%] font-lato font-bold p-2 mt-5 border-2 border-green-900 bg-green-50 w-fit rounded-lg">
           Submit
         </button>
       </form>
     </div>
   ) : (
-    <div> Please login to create a post </div>
+    <div className="text-2xl h-full w-full p-4 font-bold mb-4 text-black"> Please <a href="/LoginPage" className="text-blue-600 hover:underline">login</a> to create a post.   </div>
   );
 };
 
