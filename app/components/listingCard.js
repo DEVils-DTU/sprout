@@ -29,10 +29,10 @@ const ListingCard = ({
           Quoted Price: {proposedPrice}
         </div>
         <Link
-          href={`/Listings/${postingID}`}
+          href={`/ProjectView/${postingID}`}
           className="text-[90%] font-lato font-bold py-2 px-5 border-2 border-green-900 bg-green-50 w-fit rounded-lg"
         >
-          Quote a Price
+          View Project
         </Link>
       </div>
     </div>
