@@ -76,7 +76,7 @@ const NavBar = () => {
                     duration-500
                     rounded-2xl 
                     font-poppins`}
-                        onClick={() => { setPage("About") }}>
+                        onClick={() => { setPage("Listings") }}>
                         Projects
                     </li></Link>
 
