@@ -17,16 +17,36 @@ const About = () => {
 
   if (isLoading) return <p>Loading...</p>;
   return (
-    <div className=" h-full w-full overflow-auto p-10 flex flex-wrap justify-around items-center">
-      {data.map((posting) => (
-        <ListingCard
-          title={posting.title}
-          previewText={posting.preview}
-          proposedPrice={posting.proposedPrice}
-          coverImageURL={posting.coverImageURL}
-          postingID={posting.postingID}
-        />
-      ))}
+    <div className=" h-full w-full overflow-auto p-10 flex flex-wrap justify-around items-center text-black">
+      <div>
+        Open {data.filter((posting) => posting.status == "open").length}
+        {data
+          .filter((posting) => posting.status == "open")
+          .map((posting) => (
+            <ListingCard
+              title={posting.title}
+              previewText={posting.preview}
+              proposedPrice={posting.proposedPrice}
+              coverImageURL={posting.coverImageURL}
+              postingID={posting.postingID}
+            />
+          ))}
+      </div>
+
+      <div>
+        Closed {data.filter((posting) => posting.status == "closed").length}
+        {data
+          .filter((posting) => posting.status == "closed")
+          .map((posting) => (
+            <ListingCard
+              title={posting.title}
+              previewText={posting.preview}
+              proposedPrice={posting.proposedPrice}
+              coverImageURL={posting.coverImageURL}
+              postingID={posting.postingID}
+            />
+          ))}
+      </div>
     </div>
   );
 };
