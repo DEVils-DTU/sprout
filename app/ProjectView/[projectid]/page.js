@@ -19,7 +19,7 @@ const ProjectView = ({ params }) => {
 
             <div className='flex flex-col gap-2 w-full h-full items-start justify-start'>
                 <h2 className='font-bold text-2xl'>Place a Quotation</h2>
-                <input type='text' className='w-1/6 border-2 border-green-700 rounded-lg outline-none p-1' placeholder='10000' />
+                <input type='number' className='w-1/6 border-2 border-green-700 rounded-lg outline-none p-1' placeholder='10000' />
                 <button className='w-fit'>Submit</button>
             </div>
 
