@@ -64,7 +64,7 @@ const ProjectView = ({ params }) => {
     );
   };
 
-  const handleOffer = (e) => {
+  const handleCreateOffer = (e) => {
     e.preventDefault();
     if (!window.hive_keychain) {
       setError("Hive Keychain is not installed");
@@ -94,6 +94,31 @@ const ProjectView = ({ params }) => {
     );
   };
 
+  const handleOfferReply = (offerId, status) => {
+    if (!window.hive_keychain) {
+      setError("Hive Keychain is not installed");
+      return;
+    }
+    const my_keychain = window.hive_keychain;
+    let jsondata = {
+      app: "sprout/0.0.1",
+      action: "reply_to_offer",
+      offerID: offerId,
+      status: status,
+    };
+
+    my_keychain.requestCustomJson(
+      username,
+      "sproutapp",
+      "Active",
+      JSON.stringify(jsondata),
+      "Reply to an offer",
+      (response) => {
+        console.log(response);
+        window.location.href = "/Listings";
+      }
+    );
+  };
   if (isLoading) return <div>Loading...</div>;
 
   return (
@@ -109,12 +134,11 @@ const ProjectView = ({ params }) => {
           </h2>
         </div>
 
-
         <div className="flex text-justify justify-evenly w-[90%]">
           {postingData.text} <br />{" "}
         </div>
 
-        {loggedIn ? (
+        {loggedIn && postingData.status == "open" ? (
           username != postingData.author ? (
             // false ? (
             offers.find((a) => a.offerer == username) ? (
@@ -128,7 +152,7 @@ const ProjectView = ({ params }) => {
                   Place a Quotation
                 </h2>
                 <div className="flex gap-3 w-full">
-                  <form onSubmit={handleOffer}>
+                  <form onSubmit={handleCreateOffer}>
                     <input
                       type="text"
                       className="w-1/6 border-b-2 outline-none p-1"
@@ -164,14 +188,37 @@ const ProjectView = ({ params }) => {
             offers.map((offer) => (
               <div className="flex flex-col gap-2 w-full h-full items-start justify-start">
                 <h2 className="font-bold text-2xl">Offer</h2>
-                <p className="w-full">offerID: {offer.postingID}</p>
+                <p className="w-full">offerID: {offer.offerID}</p>
                 <p className="w-full">offerer: {offer.offererDisplay}</p>
                 <p className="w-full">Price: {offer.amount}</p>
                 <p className="w-full">Contact: {offer.offererContactInfo}</p>
-                <p className="w-full">Status: {offer.status}</p>
+                {offer.status == "open" ? (
+                  <div>
+                    <button
+                      className="text-black"
+                      onClick={() =>
+                        handleOfferReply(offer.offerID, "accepted")
+                      }
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className="text-black"
+                      onClick={() =>
+                        handleOfferReply(offer.offerID, "rejected")
+                      }
+                    >
+                      Reject
+                    </button>
+                  </div>
+                ) : (
+                  <p className="w-full">Status: {offer.status}</p>
+                )}
               </div>
             ))
           )
+        ) : loggedIn ? (
+          ""
         ) : (
           <Link href="/LoginPage">
             <button className="w-fit">Login to place a quotation</button>
