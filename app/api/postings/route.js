@@ -3,6 +3,8 @@ import { MongoClient } from "mongodb";
 
 const client = new MongoClient(process.env.mongoURI);
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request) {
   const database = client.db("sprout");
   const collection = database.collection("postings");
